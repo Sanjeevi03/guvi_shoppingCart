@@ -2,7 +2,7 @@ import "./App.css";
 import Footer from "./Components/Footer";
 import MainContent from "./Components/MainContent";
 import Header from "./Components/Header";
-// import Banner from "./Components/Banner";
+import Banner from "./Components/Banner";
 import { useState } from "react";
 import data from "./Components/Data";
 import Cart from "./Components/Cart";
@@ -39,7 +39,7 @@ function App() {
         cartBox={cartBox}
       />
       <Cart cartBox={cartBox} cartVal={cartValue.length} cartItem={cartItem} />
-      {/* <Banner /> */}
+      <Banner />
       <MainContent
         product={product}
         onAddCart={onAddCart}

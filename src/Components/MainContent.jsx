@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 function MainContent(props) {
-  const { product, onAddCart, onRemoveCart } = props;
+  const { product, onAddCart, } = props;
 
   const [cartButton, setCartButton] = useState(true);
   const handleButton = () => {

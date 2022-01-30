@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import "../App.css";
 function MainContent(props) {
-  const { product, onAddCart, } = props;
+  const { product, onAddCart, cartItem } = props;
 
   const [cartButton, setCartButton] = useState(true);
-  const handleButton = () => {
-    setCartButton(!cartButton);
-  };
 
   return (
     <div>
@@ -33,20 +30,18 @@ function MainContent(props) {
                   ) : null}
 
                   <p className="card-text">{i.price}</p>
-                  {i.price.split("-").map((i) => console.log())}
-
-                  <span onClick={handleButton} className="mt-5">
-                    {/* {cartButton   */}{ true?
-                      (<div
-                        onClick={() => onAddCart(i,i.id)}
+                  <span className="mt-5">
+                    {cartButton ? (
+                      <div
+                        onClick={() => onAddCart(i)}
                         className="mt-2 btn btn-outline-dark "
                       >
                         Add to Cart
                       </div>
-                    ) : (null
-                      // <div className="mt-2 btn btn-outline-primary ">
-                      //   Remove Cart
-                      // </div>
+                    ) : (
+                      <div className="mt-2 btn btn-outline-primary ">
+                        Remove Cart
+                      </div>
                     )}
                   </span>
                 </div>

@@ -11,7 +11,8 @@ function App() {
   const [cartItem, setCartItem] = useState([0]);
   const [cartValue, setCartValue] = useState([]);
   const [cartBox, setCartBox] = useState(false);
-  const onAddCart = (val, id) => {
+
+  const onAddCart = (val) => {
     const exist = cartItem.find((i) => i.id === val.id);
     if (exist) {
       setCartItem(
@@ -30,7 +31,6 @@ function App() {
   const onRemoveCart = () => {
     console.log("Remove cart working");
   };
-
   return (
     <>
       <Header
@@ -38,12 +38,18 @@ function App() {
         handleCartBox={handleCartBox}
         cartBox={cartBox}
       />
-      <Cart cartBox={cartBox} cartVal={cartValue.length} cartItem={cartItem} />
+      <Cart
+        cartBox={cartBox}
+        cartVal={cartValue.length}
+        cartItem={cartItem}
+        onAddCart={onAddCart}
+      />
       <Banner />
       <MainContent
         product={product}
         onAddCart={onAddCart}
         onRemoveCart={onRemoveCart}
+        cartItem={cartItem}
       />
       <Footer />
     </>

@@ -1,7 +1,7 @@
 import React from "react";
 
 function Cart(props) {
-  const { cartBox, cartVal, cartItem, onAddCart } = props;
+  const { cartBox, cartVal, cartItem, onAddCart, onRemoveCart } = props;
   const subPrice = cartItem.reduce((a, b) => a + b.qty * b.price);
   const gstPrice = subPrice * 0.08;
   const discountPrice = 30;
@@ -28,10 +28,15 @@ function Cart(props) {
                       <td>{j}</td>
                       <td>{i.name}</td>
                       <td>
-                        <span className="btn-sm btn-secondary me-2">-</span>
+                        <span
+                          onClick={() => onRemoveCart(i)}
+                          className="btn-sm btn-secondary me-2 onhover"
+                        >
+                          -
+                        </span>
                         {i.qty}
                         <span
-                          className="btn-sm btn-primary ms-2"
+                          className="btn-sm btn-primary ms-2 onhover"
                           onClick={() => onAddCart(i)}
                         >
                           +
@@ -72,11 +77,14 @@ function Cart(props) {
                   <td className="fw-bold">{totalPrice.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td colSpan={4}><button className="btn btn-secondary rounded-pill px-5 py-2 m-2">Checkout</button></td>
+                  <td colSpan={4}>
+                    <button className="btn btn-secondary rounded-pill px-5 py-2 m-2">
+                      Checkout
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            
           ) : (
             <div>Your Cart is Empty</div>
           )}

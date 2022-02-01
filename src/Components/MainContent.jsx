@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "../App.css";
 function MainContent(props) {
-  const { product, onAddCart, cartItem, onRemoveCart } = props;
+  const { product, onAddCart, cartItem,onRemoveCart, onRemoveWholeCart } = props;
 
   const [cartButton, setCartButton] = useState(true);
-  const qty = cartItem.map((i) => (i.id !== undefined ? i.qty : 0));
-  console.log(qty);
+  const id_val = cartItem.map((i) => (i.id !== undefined ? i.id : ""));
+
   const handleChange = () => {
     setCartButton(!cartButton);
   };
@@ -13,7 +13,7 @@ function MainContent(props) {
     <div>
       <div className="container mt-5">
         <div className="row pt-5">
-          {product.map((i,j) => (
+          {product.map((i, j) => (
             <div
               key={i.id}
               className="col-xl-3 col-lg-3 col-md-4 col-sm-6 text-center rounded-3 mb-5"
@@ -35,22 +35,38 @@ function MainContent(props) {
 
                   <p className="card-text">{i.price}</p>
                   <span className="mt-5" onClick={() => handleChange(i.id)}>
-                    {false ? (
-                      <div
-                        onClick={() => onRemoveCart(i)}
-                        className="mt-2 btn btn-outline-primary "
-                      >
-                        Remove Cart
-                      </div>
-                    ) : (
+                    {id_val.find((v) => v === i.id) ? (
                       <>
-                        <div
-                          onClick={() => onAddCart(i)}
-                          className="mt-2 btn btn-outline-dark "
-                        >
-                          Add to Cart
+                        <div className="btn-group mt-2" role="group">
+                          <button onClick={()=>onRemoveCart(i)}
+                            type="button"
+                            className="btn btn-outline-danger"
+                          >
+                            -
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => onRemoveWholeCart(i)}
+                            className="btn btn-outline-secondary"
+                          >
+                            Remove
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={() => onAddCart(i)}
+                          >
+                            +
+                          </button>
                         </div>
                       </>
+                    ) : (
+                      <div
+                        onClick={() => onAddCart(i)}
+                        className="mt-2 btn btn-outline-dark"
+                      >
+                        Add to Cart
+                      </div>
                     )}
                   </span>
                 </div>

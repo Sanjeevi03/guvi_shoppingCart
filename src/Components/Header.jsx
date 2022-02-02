@@ -47,7 +47,7 @@ function Header(props) {
                 <div className="d-flex justify-content-sm-start justify-content-lg-end w-75 ">
                   <div onClick={handleCartBox} className="card-pro ms-sm-4  ms-md-4 me-3 px-2 btn btn-outline-dark  fw-bold">
                     <img src={shopping_cart} alt="" className="card-icon " />
-                    Cart
+                    Car
                     <span className="badge bg-dark ms-2">{cartVal}</span>
                   </div>
                 </div>

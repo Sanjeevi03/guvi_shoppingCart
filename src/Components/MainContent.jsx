@@ -32,15 +32,14 @@ function MainContent(props) {
                     <span className="star-color">
                       &#9733;&#9733;&#9733;&#9733;&#9733;
                     </span>
-                  ) : null}
+                  ) : <br/>}
 
                   <p className="card-text">{i.price}</p>
-                  <span className="mt-5" onClick={() => handleChange(i.id)}>
+                  <span className="mt-5 position-relative" onClick={() => handleChange(i.id)}>
                     {id_val.find((v) => v === i.id) ? (
-                      <>
-                        <div className="" >
-                         
-                          <div className="btn-group" role='group' >
+                      <> 
+                        <div className="">
+                          <div className="btn-group" role="group">
                             <button
                               onClick={() => onRemoveCart(i)}
                               type="button"
@@ -48,7 +47,11 @@ function MainContent(props) {
                             >
                               -
                             </button>
-                            <span className="spanQty" disabled>{cartItem.map(k=> k.id===i.id?k.qty:null)}</span>
+                            <span className="spanQty" disabled>
+                              {cartItem.map((k) =>
+                                k.id === i.id ? k.qty : null
+                              )}
+                            </span>
 
                             <button
                               type="button"
@@ -57,14 +60,15 @@ function MainContent(props) {
                             >
                               +
                             </button>
-                          </div><br />
+                          </div>
+                          <br />
                           <button
                             type="button"
                             onClick={() => onRemoveWholeCart(i)}
                             className="btn btn-secondary"
                           >
                             Remove
-                          </button> 
+                          </button>
                         </div>
                       </>
                     ) : (

@@ -1,17 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Header from "./Header";
 
 function Cart(props) {
-  const { cartBox, cartVal, cartItem, onAddCart, onRemoveCart } = props;
+  const { cartVal, cartItem, onAddCart, onRemoveCart } = props;
   const subPrice = cartItem.reduce((a, b) => a + b.qty * b.price);
   const gstPrice = subPrice * 0.08;
   const discountPrice = 30;
   const shippingPrice = subPrice > 500 ? 0 : 50;
   const totalPrice = subPrice + gstPrice + shippingPrice - discountPrice;
   return (
-    <div className="cart-container">
-      {cartBox ? (
-        <div className="cart-div pt-2 text-center">
-          {cartVal >= 1 ? (
+    <>
+      <Header />
+      <div className="cart-container">
+        <div className="cart-div text-center">
+          {cartItem.length > 1 ? (
             <table className="w-75 mx-auto table table-borderless">
               <thead>
                 <tr>
@@ -86,11 +89,15 @@ function Cart(props) {
               </tbody>
             </table>
           ) : (
-            <div>Your Cart is Empty</div>
+            <div>
+              Your Cart is Empty <br />
+              <br />
+              <Link to="/">Click to Purchase Products</Link>
+            </div>
           )}
         </div>
-      ) : null}
-    </div>
+      </div>
+    </>
   );
 }
 

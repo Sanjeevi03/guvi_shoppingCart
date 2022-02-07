@@ -3,69 +3,20 @@ import Footer from "./Components/Footer";
 import MainContent from "./Components/MainContent";
 import Header from "./Components/Header";
 import Banner from "./Components/Banner";
-import { useState } from "react";
-import data from "./Components/Data";
-import Cart from "./Components/Cart";
-function App() {
-  const { product } = data;
-  const [cartItem, setCartItem] = useState([0]);
-  const [cartBox, setCartBox] = useState(false);
+function App(props) {
 
-  const onAddCart = (val) => {
-    const exist = cartItem.find((i) => i.id === val.id);
-    if (exist) {
-      setCartItem(
-        cartItem.map((i) =>
-          i.id === val.id ? { ...val, qty: exist.qty + 1 } : i
-        )
-      );
-    } else {
-      setCartItem([...cartItem, { ...val, qty: 1 }]);
-    }
-  };
-  const handleCartBox = () => {
-    setCartBox(!cartBox);
-  };
-  const onRemoveCart = (val) => {
-    const exist = cartItem.find((i) => i.id === val.id);
-    if (exist.qty === 1) {
-      setCartItem(cartItem.filter((x) => x.id !== val.id));
-    } else {
-      setCartItem(
-        cartItem.map((i) =>
-          i.id === val.id ? { ...val, qty: exist.qty - 1 } : i
-        )
-      );
-    }
-  };
-  const onRemoveWholeCart = (val) => {
-    setCartItem(cartItem.filter((x) => x.id !== val.id));
-  };
-  const value = cartItem.reduce((a, b) => b.qty + a);
+  const {product,cartVal,cartItem,onAddCart,onRemoveCart,onRemoveWholeCart}=props;
+
   return (
     <>
-
-        <Header
-          cartVal={value}
-          handleCartBox={handleCartBox}
-          cartBox={cartBox}
-        />
-        <Cart
-          cartBox={cartBox}
-          cartVal={value}
-          cartItem={cartItem}
-          onAddCart={onAddCart}
-          onRemoveCart={onRemoveCart}
-        />
-        <Banner />
-        <MainContent
-          product={product}
+     <Header cartVal={cartVal}/>
+     <Banner/>
+     <MainContent  product={product}
           onAddCart={onAddCart}
           onRemoveCart={onRemoveCart}
           cartItem={cartItem}
-          onRemoveWholeCart={onRemoveWholeCart}
-        />
-        <Footer />
+          onRemoveWholeCart={onRemoveWholeCart}/>
+     <Footer/>
     </>
   );
 }

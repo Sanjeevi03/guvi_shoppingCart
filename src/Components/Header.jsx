@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../App.css";
 import menu from "../img/menu.png";
 import shopping_cart from "../img/shopping-cart.png";
 function Header(props) {
-  const { cartVal, handleCartBox} = props;
+  const { cartVal, handleCartBox } = props;
 
   return (
     <div className="bg-light fixed-top">
@@ -11,7 +12,7 @@ function Header(props) {
         <header>
           <nav className="navbar navbar-expand-lg ">
             <div className="container-fluid">
-              <p className="my-auto fs-5 head-title">Start Bootstrap</p>
+              <p className="my-auto fs-5 head-title">Shopping</p>
               <button
                 className="navbar-toggler"
                 type="button"
@@ -45,11 +46,16 @@ function Header(props) {
                   </ul>
                 </ul>
                 <div className="d-flex justify-content-sm-start justify-content-lg-end w-75 ">
-                  <div onClick={handleCartBox} className="card-pro ms-sm-4  ms-md-4 me-3 px-2 btn btn-outline-dark  fw-bold">
-                    <img src={shopping_cart} alt="" className="card-icon " />
-                    Cart
-                    <span className="badge bg-dark ms-2">{cartVal}</span>
-                  </div>
+                  <Link to="/cart">
+                    <div
+                      onClick={handleCartBox}
+                      className="card-pro ms-sm-4  ms-md-4 me-3 px-2 btn btn-outline-dark  fw-bold"
+                    >
+                      <img src={shopping_cart} alt="" className="card-icon " />
+                      Cart
+                      <span className="badge bg-dark ms-2">{cartVal}</span>
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>

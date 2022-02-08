@@ -71,11 +71,7 @@ function Cart(props) {
                   <td></td>
                   <td></td>
                   <td className="fw-bold">
-                    {cartVal === 1 ? (
-                      <>Total({cartVal} item)</>
-                    ) : (
-                      <>Total({cartVal} items)</>
-                    )}
+                    Total
                   </td>
                   <td className="fw-bold">{totalPrice.toFixed(2)}</td>
                 </tr>

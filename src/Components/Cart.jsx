@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 
 function Cart(props) {
-  const { cartVal, cartItem, onAddCart, onRemoveCart } = props;
+  const { cartItem, onAddCart, onRemoveCart } = props;
   const subPrice = cartItem.reduce((a, b) => a + b.qty * b.price);
   const gstPrice = subPrice * 0.08;
   const discountPrice = 30;
